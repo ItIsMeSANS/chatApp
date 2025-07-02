@@ -1,4 +1,4 @@
-// Your Firebase Config (replace this with your actual config from Firebase)
+// Your Firebase Config (replace with your config)
 const firebaseConfig = {
   apiKey: "AIzaSyBvzBpRHSm9dV08RnUOn6cQuPFy_TuA9yc",
   authDomain: "chatting-app-25590.firebaseapp.com",
@@ -9,37 +9,58 @@ const firebaseConfig = {
   measurementId: "G-C81FD3Z2PH"
 };
 
-// Initialize Firebase
 firebase.initializeApp(firebaseConfig);
 const db = firebase.firestore();
+const auth = firebase.auth();
 
-// DOM Elements
-const form = document.getElementById("chat-form");
-const input = document.getElementById("message-input");
-const messagesDiv = document.getElementById("messages");
+let currentUsername = "";
 
-// Listen for new messages
-db.collection("messages")
-  .orderBy("timestamp")
-  .onSnapshot(snapshot => {
-    messagesDiv.innerHTML = ""; // clear messages
-    snapshot.forEach(doc => {
-      const msg = document.createElement("div");
-      msg.textContent = doc.data().text;
-      messagesDiv.appendChild(msg);
-    });
-    messagesDiv.scrollTop = messagesDiv.scrollHeight;
+// Login Form
+document.getElementById("login-form").addEventListener("submit", async (e) => {
+  e.preventDefault();
+  const name = document.getElementById("username").value.trim();
+  if (!name) return;
+
+  // Sign in anonymously
+  await auth.signInAnonymously();
+  currentUsername = name;
+
+  document.getElementById("login-screen").style.display = "none";
+  document.getElementById("chat-container").style.display = "flex";
+
+  startChat();
+});
+
+function startChat() {
+  const form = document.getElementById("chat-form");
+  const input = document.getElementById("message-input");
+  const messagesDiv = document.getElementById("messages");
+
+  // Send message
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const text = input.value.trim();
+    if (text) {
+      await db.collection("messages").add({
+        text,
+        username: currentUsername,
+        timestamp: firebase.firestore.FieldValue.serverTimestamp()
+      });
+      input.value = "";
+    }
   });
 
-// Send message
-form.addEventListener("submit", e => {
-  e.preventDefault();
-  const text = input.value;
-  if (text.trim() !== "") {
-    db.collection("messages").add({
-      text: text,
-      timestamp: firebase.firestore.FieldValue.serverTimestamp()
+  // Load messages
+  db.collection("messages")
+    .orderBy("timestamp")
+    .onSnapshot(snapshot => {
+      messagesDiv.innerHTML = "";
+      snapshot.forEach(doc => {
+        const data = doc.data();
+        const msg = document.createElement("div");
+        msg.innerHTML = `<strong>${data.username || "Anonymous"}:</strong> ${data.text}`;
+        messagesDiv.appendChild(msg);
+      });
+      messagesDiv.scrollTop = messagesDiv.scrollHeight;
     });
-    input.value = "";
-  }
-});
+}
