@@ -1,11 +1,12 @@
 // Your Firebase Config (replace this with your actual config from Firebase)
 const firebaseConfig = {
-  apiKey: "YOUR_API_KEY",
-  authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
-  projectId: "YOUR_PROJECT_ID",
-  storageBucket: "YOUR_PROJECT_ID.appspot.com",
-  messagingSenderId: "XXXXXX",
-  appId: "YOUR_APP_ID"
+  apiKey: "AIzaSyBvzBpRHSm9dV08RnUOn6cQuPFy_TuA9yc",
+  authDomain: "chatting-app-25590.firebaseapp.com",
+  projectId: "chatting-app-25590",
+  storageBucket: "chatting-app-25590.firebasestorage.app",
+  messagingSenderId: "970531729230",
+  appId: "1:970531729230:web:d0928e1b456a338f26781f",
+  measurementId: "G-C81FD3Z2PH"
 };
 
 // Initialize Firebase
