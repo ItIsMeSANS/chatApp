@@ -1,45 +1,24 @@
-body {
-  font-family: sans-serif;
-  background: #111;
-  color: white;
-  margin: 0;
+.login-screen {
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   height: 100vh;
+  background: #111;
+  color: white;
 }
 
-.chat-container {
-  background: #222;
-  width: 90%;
-  max-width: 500px;
-  height: 80vh;
-  display: flex;
-  flex-direction: column;
-  border-radius: 10px;
-  overflow: hidden;
-}
-
-.messages {
-  flex: 1;
+.login-screen input {
   padding: 10px;
-  overflow-y: auto;
-}
-
-form {
-  display: flex;
-}
-
-input {
-  flex: 1;
-  padding: 10px;
+  margin-top: 10px;
   background: #333;
   border: none;
   color: white;
 }
 
-button {
+.login-screen button {
   padding: 10px 20px;
+  margin-top: 10px;
   background: #555;
   border: none;
   color: white;
