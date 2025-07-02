@@ -1,72 +1,138 @@
-body {
-  font-family: sans-serif;
-  background: #111;
-  color: white;
+/* Reset & Base Styling */
+* {
+  box-sizing: border-box;
   margin: 0;
+  padding: 0;
+}
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #0e0e0e;
+  color: #fff;
+  height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 100vh;
 }
 
-.chat-container {
-  background: #222;
-  width: 90%;
-  max-width: 500px;
-  height: 80vh;
-  display: flex;
-  flex-direction: column;
-  border-radius: 10px;
-  overflow: hidden;
-}
-
-.messages {
-  flex: 1;
-  padding: 10px;
-  overflow-y: auto;
-}
-
-form {
-  display: flex;
-}
-
-input {
-  flex: 1;
-  padding: 10px;
-  background: #333;
-  border: none;
-  color: white;
-}
-
-button {
-  padding: 10px 20px;
-  background: #555;
-  border: none;
-  color: white;
-}
-
+/* Login Screen */
 .login-screen {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  background-color: #111;
   height: 100vh;
-  background: #111;
-  color: white;
+  width: 100%;
+  padding: 20px;
+}
+
+.login-screen h2 {
+  margin-bottom: 20px;
+  font-size: 24px;
+  color: #f1f1f1;
+}
+
+.login-screen input,
+.login-screen button {
+  padding: 10px 15px;
+  margin-top: 10px;
+  font-size: 16px;
+  border: none;
+  border-radius: 6px;
+  width: 250px;
 }
 
 .login-screen input {
-  padding: 10px;
-  margin-top: 10px;
-  background: #333;
-  border: none;
+  background-color: #2a2a2a;
   color: white;
 }
 
 .login-screen button {
-  padding: 10px 20px;
-  margin-top: 10px;
-  background: #555;
+  background-color: #3b82f6;
+  color: white;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+.login-screen button:hover {
+  background-color: #2563eb;
+}
+
+/* Chat Container */
+.chat-container {
+  display: flex;
+  flex-direction: column;
+  background-color: #1c1c1c;
+  width: 100%;
+  max-width: 600px;
+  height: 90vh;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 0 10px rgba(0,0,0,0.5);
+}
+
+/* Message List */
+.messages {
+  flex: 1;
+  padding: 15px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* Chat Bubbles */
+.messages div {
+  background-color: #2d2d2d;
+  padding: 10px 14px;
+  border-radius: 8px;
+  max-width: 80%;
+  word-wrap: break-word;
+  position: relative;
+}
+.messages div strong {
+  display: block;
+  margin-bottom: 4px;
+  color: #3b82f6;
+  font-size: 14px;
+}
+
+/* Form Styling */
+form {
+  display: flex;
+  border-top: 1px solid #333;
+  background: #111;
+}
+
+#message-input {
+  flex: 1;
+  padding: 14px;
+  border: none;
+  background-color: #2a2a2a;
+  color: white;
+  font-size: 16px;
+}
+#message-input:focus {
+  outline: none;
+}
+
+button[type="submit"] {
+  padding: 14px 20px;
+  background-color: #3b82f6;
   border: none;
   color: white;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+button[type="submit"]:hover {
+  background-color: #2563eb;
+}
+
+/* Scrollbar (for better look) */
+.messages::-webkit-scrollbar {
+  width: 6px;
+}
+.messages::-webkit-scrollbar-thumb {
+  background: #555;
+  border-radius: 3px;
 }
