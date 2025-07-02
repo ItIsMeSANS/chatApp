@@ -1,11 +1,11 @@
 body {
-  font-family: Arial, sans-serif;
+  font-family: sans-serif;
   background: #111;
-  color: #eee;
+  color: white;
   margin: 0;
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
   height: 100vh;
 }
 
@@ -24,19 +24,17 @@ body {
   flex: 1;
   padding: 10px;
   overflow-y: auto;
-  border-bottom: 1px solid #333;
 }
 
 form {
   display: flex;
-  background: #111;
 }
 
 input {
   flex: 1;
   padding: 10px;
-  border: none;
   background: #333;
+  border: none;
   color: white;
 }
 
